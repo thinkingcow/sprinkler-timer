@@ -1,4 +1,4 @@
-module relay
+module github.com/thinkingcow/sprinkler-timer
 
 go 1.16
 
