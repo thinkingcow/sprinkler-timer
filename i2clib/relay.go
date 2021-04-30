@@ -1,10 +1,9 @@
 // Go version of i2c relay driver (reverse engineered)
-package main
+package i2clib
 
 import (
 	"fmt"
 	"os"
-	"strconv"
 
 	"golang.org/x/sys/unix"
 )
@@ -113,6 +112,7 @@ func (r *Relay) Close() error {
 // -length (don't run, just report total length
 
 // Just testing
+/*
 func main() {
 	r, err := NewRelay(1, 2)
 	if err != nil {
@@ -140,3 +140,4 @@ func main() {
 		fmt.Printf("%d\n", v)
 	}
 }
+*/
