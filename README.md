@@ -1,5 +1,6 @@
 # sprinkler-timer
 Sprinkler timer using the SequentMicrosystems stackable 8-relay board(s)
+on a Raspberry PI
 
 The relays are controlled by communicating with an I2C device, using the "i2c" Linux kernel driver.
 
