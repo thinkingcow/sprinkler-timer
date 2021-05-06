@@ -160,6 +160,7 @@ func main() {
 	flag.BoolVar(&isDuration, "total-time", false, "Compute total duration of entire program")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options]\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  Use 'kill -USR1 $pid' to see currently active zone, if any\n")
 		flag.PrintDefaults()
 	}
 	flag.Parse()
