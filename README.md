@@ -1,6 +1,6 @@
 # sprinkler-timer
 Sprinkler timer using the SequentMicrosystems stackable 8-relay board(s)
-on a Raspberry PI
+on a Raspberry PI.  This is a work in progress.
 
 The relays are controlled by communicating with an I2C device, using the "i2c" Linux kernel driver.
 
@@ -28,5 +28,11 @@ Get the currently activated relays (e.g. r.Set(i);r.Get() should emit "i")
 Close the channel
 
 Build "sample" program:
-
   `go build cmd/basic/relay.go`
+"relay" sets or reads the state of the relays on a daughter card
+
+Build basic sprinkler program
+   go build cmd/sprinkler/sprinkler.go
+"sprinkler" activates a sequence of sprinkler zones in the provided sequence and timings.
+It is suitable for running via cron
+
