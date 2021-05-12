@@ -1,13 +1,14 @@
 # sprinkler-timer
-Sprinkler timer using the SequentMicrosystems stackable 8-relay board(s)
+Sprinkler timer using [SequentMicrosystems stackable 8-relay board(s)](https://sequentmicrosystems.com/collections/all-io-cards/products/raspberry-pi-relays-stackable-card) 
 on a Raspberry PI.  This is a work in progress.
 
-The relays are controlled by communicating with an I2C device, using the "i2c" Linux kernel driver.
+The relays are controlled by communicating with the onboard I2C device, using the "i2c" Linux kernel driver.
 
-This code is/was reverse engineered by running the 8relay binary from SequentMicro with
-strace -e open,read,write,ioctl 8relay ...
+This code is/was reverse engineered by running the 8relay binary from SequentMicro with:
 
-Basic library usage:
+`strace -e open,read,write,ioctl 8relay ...`
+
+**Basic library usage**:
 
   `r, err := i2clib.NewRelay(bus, board)`
   
@@ -27,7 +28,7 @@ Get the currently activated relays (e.g. r.Set(i);r.Get() should emit "i")
   
 Close the channel
 
-Build "sample" programs:
+**Build "sample" programs**:
 * `go build cmd/basic/relay.go`
    Relay sets or reads the state of the relays on a daughter card
 * `go build cmd/sprinkler/sprinkler.go` 
