@@ -1,6 +1,6 @@
 // Control a sprinkler program (version 1)
 // Theory of operation:
-//   A "program" is a set of sprinkler zoness that run in a sequence, each for a specified duration
+//   A "program" is a set of sprinkler zones that run in a sequence, each for a specified duration.
 //   This cli defines and runs a "program"
 //   One or more instances are intended to be started via cron.
 //   Only one relay (sprinkler zone) should be activated at a time.
@@ -114,7 +114,7 @@ func (p *program) run(r *i2clib.Relay, pct int) error {
 	return nil
 }
 
-// scale is a conveniece function to scale a duration
+// scale is a convenience function to scale a duration
 func scale(dur time.Duration, percent int) time.Duration {
 	scaled := time.Duration(int64(dur) * int64(percent) / 100)
 	if scaled < offTime {
