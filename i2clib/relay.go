@@ -71,7 +71,7 @@ func NewRelay(bus int, board int) (*Relay, error) {
 // boards are numbered 1-8
 func (r *Relay) Board(n int) error {
 	r.board = n
-	if err := unix.IoctlSetInt(int(r.file.Fd()), slaveAddress, baseAddress-(n-1&7)); err != nil {
+	if err := unix.IoctlSetInt(int(r.file.Fd()), slaveAddress, baseAddress-((n-1)&7)); err != nil {
 		r.board = 0
 		return fmt.Errorf("Can't set slave: %x, %x: %w", slaveAddress, baseAddress-((n-1)&7), err)
 	}
@@ -105,39 +105,3 @@ func (r *Relay) Get() (int, error) {
 func (r *Relay) Close() error {
 	return r.file.Close()
 }
-
-// TODO - set up sprinkler program
-// 1:30 4:15 7:11 (springer number and time)
-// -percent nn (adjust total time by this amount
-// -length (don't run, just report total length
-
-// Just testing
-/*
-func main() {
-	r, err := NewRelay(1, 2)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Cant create relay: %s\n", err)
-		os.Exit(1)
-	}
-	defer r.Close()
-	if os.Args[1] == "set" {
-		i, err := strconv.Atoi(os.Args[2])
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "invalid integer: %s\n", err)
-			os.Exit(2)
-		}
-		if err = r.Set(i); err != nil {
-			fmt.Fprintf(os.Stderr, "Cant set value: %s\n", err)
-			return
-		}
-	}
-	if os.Args[1] == "get" {
-		v, err := r.Get()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Can't get value: %s\n", err)
-			return
-		}
-		fmt.Printf("%d\n", v)
-	}
-}
-*/
